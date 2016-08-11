@@ -49,6 +49,9 @@ Theano==0.7.0
 tornado==4.2.1
 traitlets==4.0.0
 wheel==0.26.0
+
+distance - Utilities for comparing sequences
+https://github.com/doukremt/distance
 ```
 
 ##Process Description:
