@@ -1,6 +1,5 @@
 #Deep Learning With RNN
-Our project target was to use RNN deep learing algorithem to create new text after modelize a data set.
-we used anthems data set and we created with it a new anthem.
+Our project target was to use RNN deep learing algorithm to create a brand new text that will help us create a new anthem.
 
 ###Requirements:
 ```bash
