@@ -82,7 +82,7 @@ every matching gave us a rate,and we calculated the avarage of all results.
 ```
 # example how it works 
 > distance.levenshtein(string_new,string_old)
-# 0.761962 
+> 0.761962 
 ```
 6) Now we save the sentences in output.txt, and also the string matching summary result (from last step).
 
