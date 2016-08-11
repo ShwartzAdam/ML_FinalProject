@@ -1,3 +1,6 @@
+#Deep Learning With RNN
+Our project target was to use RNN deep learing algorithem to create new text after modelize a data set.
+we used anthems data set and we created with it a new anthem.
 
 Requirements:
 ```bash
@@ -49,7 +52,7 @@ traitlets==4.0.0
 wheel==0.26.0
 ```
 
-Summery:
+##Process Description:
 
 1) First we search the web for united data of anthems in english (you can see the results under data/mydata.csv)
 
@@ -68,6 +71,14 @@ _LEARNING_RATE = float(os.environ.get('LEARNING_RATE', '0.005'))
 _NEPOCH = int(os.environ.get('NEPOCH', '50'))
 ```
 
+4) after the model finished training with train_with_sgd function, you can call it a 'smart model', and you need to save it with save_model_parameters_theano the file will be trained-model-theano.npz and saved at 'data' folder. (now we can use it)
+
+5) we got the model , so now we use 'load_model_parameters_theano' function to load to model parameters and prepare it to generate sentences as much as we wish.
+
+6) after generating the sentences, we test the result by compare it facing the original sentences. every matching gave us a rate, we calculated avarage of all the results.
+
+7) Now we save the sentences in output.txt, and also the string matching summary result (from last step).
 
 
+###Summery:
 
