@@ -2,7 +2,7 @@
 Our project target was to use RNN deep learing algorithem to create new text after modelize a data set.
 we used anthems data set and we created with it a new anthem.
 
-Requirements:
+###Requirements:
 ```bash
 appnope==0.1.0
 backports.ssl-match-hostname==3.4.0.2
@@ -75,10 +75,27 @@ _NEPOCH = int(os.environ.get('NEPOCH', '50'))
 
 5) we got the model , so now we use 'load_model_parameters_theano' function to load to model parameters and prepare it to generate sentences as much as we wish.
 
-6) after generating the sentences, we test the result by compare it facing the original sentences. every matching gave us a rate, we calculated avarage of all the results.
+6) after generating the sentences, we test the result by compare it facing the original sentences with 
+Levenshtein distance (LD) which is a measure of the similarity between two strings.
+every matching gave us a rate,and we calculated the avarage of all results.
 
 7) Now we save the sentences in output.txt, and also the string matching summary result (from last step).
 
 
-###Summery:
+##Summery:
 
+####Part of result:
+#####We collected some of the sentences, those with some logic. 
+
+```
+own been 's independence of sure people and forest nation . 
+arise , angola , defenders children . 
+freedom repeat truly or good salute ! 
+oh on hail people over must tyrant . 
+lived are free forefathers help our me . 
+arise , my , fatherland and each reign past love reign . 
+victory sure brave or you . 
+```
+
+For human eyes it's look not that good. But, if we trained the model for more iterations we could have a better results. 
+The rates of our results was between 0.7 - 0.5 (from 1). 
