@@ -57,6 +57,17 @@ Summery:
 
 3) We used Theano to modulize the data set and prepared it to generate sentences.
 
-the size of our vocabulary is pretty small considring our data set, we have in the data set only 219 national anthems so we kinda limited by how many uniqe words we could have.
+the size of our vocabulary is pretty small considring our data set. we have in the data set only 219 national anthems so we kinda limited by how many uniqe words we could have.
+
+hidden layer we set it to 500 (as the “memory” of our network , Making it bigger allows us to learn more complex patterns)
+learing rate (which defines how big of a step we want to make in each iteration) was init to 0.005 and it goes on for 50 nepoch (number of times to iterate through the complete dataset).
+```
+_VOCABULARY_SIZE = int(os.environ.get('VOCABULARY_SIZE', '1000'))
+_HIDDEN_DIM = int(os.environ.get('HIDDEN_DIM', '500')) 
+_LEARNING_RATE = float(os.environ.get('LEARNING_RATE', '0.005'))
+_NEPOCH = int(os.environ.get('NEPOCH', '50'))
+```
+
+
 
 
