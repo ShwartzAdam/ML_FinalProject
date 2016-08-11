@@ -1,59 +1,62 @@
-**[Please read the blog post that goes with this code!](http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-2-implementing-a-language-model-rnn-with-python-numpy-and-theano/)**
 
-### Jupyter Notebook Setup
-
-System Requirements:
-
-- Python, pip
-- (Optional) [virtualenv](https://virtualenv.pypa.io/en/latest/)
-
-To start the [Jupyter Notebook](https://jupyter.org/index.html):
-
+Requirements:
 ```bash
-# Clone the repo
-git clone https://github.com/dennybritz/rnn-tutorial-rnnlm
-cd rnn-tutorial-rnnlm
-
-# Create a new virtual environment (optional, but recommended)
-virtualenv venv
-source venv/bin/activate
-
-# Install requirements
-pip install -r requirements.txt
-# Start the notebook server
-jupyter notebook
+appnope==0.1.0
+backports.ssl-match-hostname==3.4.0.2
+certifi==2015.9.6.2
+decorator==4.0.2
+funcsigs==0.4
+functools32==3.2.3.post2
+gnureadline==6.3.3
+ipykernel==4.0.3
+ipython==4.0.0
+ipython-genutils==0.1.0
+ipywidgets==4.0.2
+Jinja2==2.8
+jsonschema==2.5.1
+jupyter==1.0.0
+jupyter-client==4.0.0
+jupyter-console==4.0.2
+jupyter-core==4.0.6
+MarkupSafe==0.23
+matplotlib==1.4.3
+mistune==0.7.1
+mock==1.3.0
+nbconvert==4.0.0
+nbformat==4.0.0
+nltk==3.0.5
+nose==1.3.7
+notebook==4.0.4
+numpy==1.9.2
+path.py==8.1.1
+pbr==1.8.0
+pexpect==3.3
+pickleshare==0.5
+ptyprocess==0.5
+Pygments==2.0.2
+pyparsing==2.0.3
+python-dateutil==2.4.2
+pytz==2015.4
+pyzmq==14.7.0
+qtconsole==4.0.1
+scipy==0.16.0
+simplegeneric==0.8.1
+six==1.9.0
+terminado==0.5
+Theano==0.7.0
+tornado==4.2.1
+traitlets==4.0.0
+wheel==0.26.0
 ```
 
-### Setting up a CUDA-enabled GPU instance on EC2:
+Summery:
 
-```bash
-# Install build tools
-sudo apt-get update
-sudo apt-get install -y build-essential git python-pip libfreetype6-dev libxft-dev libncurses-dev libopenblas-dev  gfortran python-matplotlib libblas-dev liblapack-dev libatlas-base-dev python-dev python-pydot linux-headers-generic linux-image-extra-virtual
-sudo pip install -U pip
+1) First we search the web for united data of anthems in english (you can see the results under data/mydata.csv)
 
-# Install CUDA 7
-wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1410/x86_64/cuda-repo-ubuntu1410_7.0-28_amd64.deb
-sudo dpkg -i cuda-repo-ubuntu1410_7.0-28_amd64.deb
-sudo apt-get update
-sudo apt-get install -y cuda
-sudo reboot
+2) We modified menualy the data and remove unesesserly tokens
 
-# Clone the repo and install requirements
-git clone git@github.com:dennybritz/nn-theano.git
-cd nn-theano
-sudo pip install -r requirements.txt
+3) We used Theano to modulize the data set and prepared it to generate sentences.
 
-# Set Environment variables
-export CUDA_ROOT=/usr/local/cuda-7.0
-export PATH=$PATH:$CUDA_ROOT/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_ROOT/lib64
-export THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32
-# For profiling only
-export CUDA_LAUNCH_BLOCKING=1
+the size of our vocabulary is pretty small considring our data set, we have in the data set only 219 national anthems so we kinda limited by how many uniqe words we could have.
 
-# Startup jupyter noteboook
-jupyter notebook
-```
 
-To start a public notebook server that is accessible over the network you can [follow the official instructions](http://jupyter-notebook.readthedocs.org/en/latest/public_server.html#notebook-public-server).
