@@ -119,13 +119,12 @@ y_train = np.asarray([[word_to_index[w] for w in sent[1:]] for sent in tokenized
 model = RNNTheano(vocabulary_size, hidden_dim=_HIDDEN_DIM)
 
 # Chekc if model loaded 
-#if _MODEL_FILE != None:
-#    load_model_parameters_theano(_MODEL_FILE, model)
+if _MODEL_FILE != None:
+    load_model_parameters_theano(_MODEL_FILE, model)
 # train the model with sgd 
-# losses = train_with_sgd(model, X_train, y_train, nepoch=_NEPOCH, learning_rate=_LEARNING_RATE, evaluate_loss_after=5)
-print "Finish"
+losses = train_with_sgd(model, X_train, y_train, nepoch=_NEPOCH, learning_rate=_LEARNING_RATE, evaluate_loss_after=5)
 # save the model
-#save_model_parameters_theano('./data/trained-model-theano.npz', model)
+save_model_parameters_theano('./data/trained-model-theano.npz', model)
 # load it to create random sentence
 load_model_parameters_theano('./data/trained-model-theano.npz', model)
 
@@ -139,19 +138,13 @@ for i in range(num_sentences):
     while len(sent) < senten_min_length:
         sent = generate_sentence(model)
     newSen.append(" ".join(sent))
-
-# insert to new sentence to txt file   
-
 # replace unwatned token before string matching
 tokenized_old_sentences = []
 for s in tokenized_sentences:
     tokenized_old_sentences.append( removeUnwantedTokens(s) )
-    #i = i + 1
-    #print tokenized_sentences[i]
+    
 
-tokenized_new_sentences = [nltk.word_tokenize(sent) for sent in newSen]
-#print "length of new sentence %d " % len(tokenized_new_sentences)
-#print "example of arr %s " tokenized_new_sentences[1]   
+tokenized_new_sentences = [nltk.word_tokenize(sent) for sent in newSen] 
 print "first sentence is %s " % str(tokenized_new_sentences[1])
 print "second sentence is %s " % str(tokenized_old_sentences[1])
 
@@ -166,6 +159,7 @@ avg = avg/length
 
 print "levenshtein result is %f" % avg
 
+# insert to new sentence to txt file
 with open("Output.txt", "w") as text_file:
     for arr in tokenized_new_sentences:
         for s in arr:
