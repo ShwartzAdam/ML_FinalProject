@@ -56,11 +56,14 @@ https://github.com/doukremt/distance
 
 ##Process Description:
 
-1) searched the web for united data of anthems in english (you can see the results under data/mydata.csv)
+###1) searched the web for united data of anthems in english (you can see the results under data/mydata.csv)
+(we planned on web scrapping but eventuly , we manage to allocate on raw csv file which already contained the anthems
+writtin in english)
 
-
-2) We used Theano to modulize the data set and prepared it to generate sentences.
-
+####1.1) Preparations stage 
+In that phase, we used simple known way to totaly remove all uneeded tokens , including countries name.
+  
+###2) We used Theano to modulize the data set and prepared it to generate sentences.
 the size of our vocabulary is pretty small considering our data set which contain only 219 national anthems so we kinda limited by how many uniqe words we could find.
 
 hidden layer has set to 500 (as the “memory” of our network , making it bigger allows us to learn more complex patterns)
@@ -72,14 +75,14 @@ _LEARNING_RATE = float(os.environ.get('LEARNING_RATE', '0.005'))
 _NEPOCH = int(os.environ.get('NEPOCH', '50'))
 ```
 
-3) after the model has finished training with train_with_sgd function, you can call it a 'smart model', and now you need to save it with save_model_parameters_theano function and the file will be 'trained-model-theano.npz' and saved at 'data' folder. (now we can use it)
+###3) after the model has finished training with train_with_sgd function, you can call it a 'smart model', and now you need to save it with save_model_parameters_theano function and the file will be 'trained-model-theano.npz' and saved at 'data' folder. (now we can use it)
 
-4) we got the model , so now we use 'load_model_parameters_theano' function to load to model parameters and prepare it to generate sentences as much as we wish.
+###4) we got the model , so now we use 'load_model_parameters_theano' function to load to model parameters and prepare it to generate sentences as much as we wish.
 ```
 senten_min_length = x
 num_sentences = y
 ```
-5) after generating the sentences, we test the result by compare it facing the original sentences with 
+###5) after generating the sentences, we test the result by compare it facing the original sentences with 
 Levenshtein distance (LD) which is a measure of the similarity between two strings.
 every matching gave us a rate,and we calculated the avarage of all results.
 ```
@@ -87,7 +90,7 @@ every matching gave us a rate,and we calculated the avarage of all results.
 > distance.levenshtein(string_new,string_old)
 > 0.761962 
 ```
-6) Now we save the sentences in output.txt, and also the string matching summary result (from last step).
+###6) Now we save the sentences in output.txt, and also the string matching summary result (from last step).
 
 
 ##Summery:
