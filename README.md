@@ -11,6 +11,9 @@ jupyter notebook
 
 # distance - Utilities for comparing sequences
 https://github.com/doukremt/distance
+
+# igraph libary
+pip install python-igraph
 ```
 
 ##Process Description:
