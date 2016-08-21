@@ -124,9 +124,19 @@ for tmp_new in tokenized_new_sentences:
 avg = avg / num_sentences
 
 ```
-###5)Save the sentences in output.txt, and also the string matching summary result (from last step).
+###5) Final step is to write it to Output file text
+Save the sentences in output.txt, and also the string matching summary result (from last step).
+```
+# insert to new sentence to txt file
+with open("Output2.txt", "w") as text_file:
+    for arr in tokenized_new_sentences:
+        for s in arr:
+            text_file.write("%s " % s.encode("utf-8"))
+        text_file.write("\n")
+    text_file.write("Result: %f " % avg)
+```
 
-## Summery:
+## Summary:
 
 #### Part of result:
 ##### We collected some of the sentences, those with some logic. 
