@@ -149,21 +149,35 @@ print "first sentence is %s " % str(tokenized_new_sentences[1])
 print "second sentence is %s " % str(tokenized_old_sentences[1])
 
 avg = 0
-length = 0
+maxRate = 0
+tmpValue = 0
+tmpIndex = 0
+index = 0 
 
-for tmp in tokenized_new_sentences:
-    avg += distance.levenshtein( str(tokenized_old_sentences[length]),str(tmp) , 2)
-    length += 1
-    
-avg = avg/length
+for tmp_new in tokenized_new_sentences:
+    for tmp_old in tokenized_old_sentences:
+        newRate = distance.levenshtein( str(tmp_old),str(tmp_new) , 1)
+        if maxRate < newRate:
+            maxRate = newRate
+        if tmpValue != 0:
+            tokenized_old_sentences[tmpIndex] = tmpValue
+        tmpIndex = index
+        tmpValue = maxRate
+        tokenized_old_sentences[index] = 0
+        index += 1
+    avg += maxRate
+    maxRate = 0
+    index = 0
+
+avg = avg / num_sentences
 
 print "levenshtein result is %f" % avg
 
 # insert to new sentence to txt file
-with open("Output.txt", "w") as text_file:
+with open("Output2.txt", "w") as text_file:
     for arr in tokenized_new_sentences:
         for s in arr:
-            text_file.write("%s " % s)
+            text_file.write("%s " % s.encode("utf-8"))
         text_file.write("\n")
     text_file.write("Result: %f " % avg)
             
