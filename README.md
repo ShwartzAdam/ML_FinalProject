@@ -104,22 +104,25 @@ tokenized_new_sentences = [nltk.word_tokenize(sent) for sent in newSen]
 
 ####4.2) We bulid a function that will find the best matching between old and new sentence , and return the heighst match.
 ```
+
 for tmp_new in tokenized_new_sentences:
     for tmp_old in tokenized_old_sentences:
-        newRate = distance.levenshtein( str(tmp_old),str(tmp_new) , 1)
-        if maxRate < newRate:
-            maxRate = newRate
+        newRate = distance.levenshtein( str(tmp_old),str(tmp_new) , 2)
+        if minRate > newRate :
+            minRate = newRate
+            print "new min Rate : %f \t " % newRate
         if tmpValue != 0:
             tokenized_old_sentences[tmpIndex] = tmpValue
         tmpIndex = index
-        tmpValue = maxRate
+        tmpValue = minRate
         tokenized_old_sentences[index] = 0
         index += 1
-    avg += maxRate
-    maxRate = 0
+    avg += minRate
+    minRate = 0
     index = 0
 
 avg = avg / num_sentences
+
 ```
 ###5)Save the sentences in output.txt, and also the string matching summary result (from last step).
 
