@@ -48,7 +48,7 @@ word_to_index = dict([(w,i) for i,w in enumerate(index_to_word)])
 for i, sent in enumerate(tokenized_sentences):
     tokenized_sentences[i] = [w if w in word_to_index else unknown_token for w in sent]
 ```
-###2)Modulize using Theano
+###2) Modulize using Theano
 
 hidden layer has set to 500 (as the “memory” of our network , making it bigger allows us to learn more complex patterns)
 learing rate (which defines how big of a step we want to make in each iteration) was initialize to 0.005 and it goes on for 50 nepoch (number of times to iterate through the complete dataset).
@@ -65,7 +65,7 @@ train_with_sgd(model, X_train, y_train, nepoch=_NEPOCH, learning_rate=_LEARNING_
 
 ###3) Save & load model and generate sentences
 
-####after the model has finished training with train_with_sgd function, you can call it a 'smart model', and now you need to save it with save_model_parameters_theano function and the model file type -> 'trained-model-theano.npz' will be save at 'data' folder. (now we can use it)
+#### After the model has finished training with train_with_sgd function, you can call it a 'smart model', and now you need to save it with save_model_parameters_theano function and the model file type -> 'trained-model-theano.npz' will be save at 'data' folder. (now we can use it)
 Here you can see that it will generate 50 sentences in the size of 6 .
 ```
 # Save the model
@@ -88,11 +88,11 @@ for i in range(num_sentences):
 
 ###4) Similarity between old and new sentences
 
-#####after generating the sentences, we test the result by compare it facing the original sentences with 
+##### After generating the sentences, we test the result by compare it facing the original sentences with 
 Levenshtein distance (LD) which is a measure of the similarity between two strings.
 every matching gave us a rate,and we calculated the avarage of all results.
 
-####4.1) first of all we deleted the words that was sign with unkown token sign  , because they irrelevant for string matching
+####4.1) First of all we deleted the words that was sign with unkown token sign  , because they irrelevant for string matching
 ```
 # old sentences
 for s in tokenized_sentences:
@@ -102,7 +102,7 @@ tokenized_new_sentences = [nltk.word_tokenize(sent) for sent in newSen]
 
 ```
 
-####4.2) we bulid a function that will find the best matching between old and new sentence , and return the heighst match.
+####4.2) We bulid a function that will find the best matching between old and new sentence , and return the heighst match.
 ```
 for tmp_new in tokenized_new_sentences:
     for tmp_old in tokenized_old_sentences:
@@ -123,10 +123,10 @@ avg = avg / num_sentences
 ```
 ###5)Save the sentences in output.txt, and also the string matching summary result (from last step).
 
-##Summery:
+## Summery:
 
-####Part of result:
-#####We collected some of the sentences, those with some logic. 
+#### Part of result:
+##### We collected some of the sentences, those with some logic. 
 
 ```
 own been 's independence of sure people and forest nation . 
@@ -140,3 +140,6 @@ victory sure brave or you .
 
 For human eyes it's look not that good. But, if we trained the model for more iterations we could have a better results. 
 The rates of our results was between 0.7 - 0.5 (from 1). 
+
+Edited: Noticing our check was not opitmize for project requires , we did change it and now receiving a better averge 
+for string matching -> Result: 0.994151 
