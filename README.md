@@ -142,4 +142,4 @@ For human eyes it's look not that good. But, if we trained the model for more it
 The rates of our results was between 0.7 - 0.5 (from 1). 
 
 Edited: Noticing our check was not opitmize for project requires , we did change it and now receiving a better averge 
-for string matching -> Result: 0.994151 
+for string matching by finding the most similar (lower) sentence averge score -> Result: 0.005385 
