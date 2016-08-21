@@ -110,7 +110,6 @@ for tmp_new in tokenized_new_sentences:
         newRate = distance.levenshtein( str(tmp_old),str(tmp_new) , 2)
         if minRate > newRate :
             minRate = newRate
-            print "new min Rate : %f \t " % newRate
         if tmpValue != 0:
             tokenized_old_sentences[tmpIndex] = tmpValue
         tmpIndex = index
@@ -118,7 +117,7 @@ for tmp_new in tokenized_new_sentences:
         tokenized_old_sentences[index] = 0
         index += 1
     avg += minRate
-    minRate = 0
+    minRate = 1
     index = 0
 
 avg = avg / num_sentences
@@ -153,6 +152,3 @@ victory sure brave or you .
 
 For human eyes it's look not that good. But, if we trained the model for more iterations we could have a better results. 
 The rates of our results was between 0.7 - 0.5 (from 1). 
-
-Edited: Noticing our check was not opitmize for project requires , we did change it and now receiving a better averge 
-for string matching by finding the most similar (lower) sentence averge score -> Result: 0.005385 
