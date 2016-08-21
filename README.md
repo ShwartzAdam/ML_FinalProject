@@ -1,5 +1,9 @@
+Adam Shwartz
+Daniel Shamama
+
 #Deep Learning With RNN
-Our project target was to use RNN deep learing algorithm to create a brand new text that will help us create a new anthem.
+Our project target was to use RNN deep learing algorithm to create a brand new text that will help us create a new anthem
+by using all the national anthem in english.
 
 ###Requirements:
 ```bash
