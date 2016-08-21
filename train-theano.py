@@ -148,28 +148,31 @@ tokenized_new_sentences = [nltk.word_tokenize(sent) for sent in newSen]
 print "first sentence is %s " % str(tokenized_new_sentences[1])
 print "second sentence is %s " % str(tokenized_old_sentences[1])
 
+
 avg = 0
-maxRate = 0
+minRate = 1
 tmpValue = 0
 tmpIndex = 0
 index = 0 
 
 for tmp_new in tokenized_new_sentences:
     for tmp_old in tokenized_old_sentences:
-        newRate = distance.levenshtein( str(tmp_old),str(tmp_new) , 1)
-        if maxRate < newRate:
-            maxRate = newRate
+        newRate = distance.levenshtein( str(tmp_old),str(tmp_new) , 2)
+        if minRate > newRate :
+            minRate = newRate
+            print "new min Rate : %f \t " % newRate
         if tmpValue != 0:
             tokenized_old_sentences[tmpIndex] = tmpValue
         tmpIndex = index
-        tmpValue = maxRate
+        tmpValue = minRate
         tokenized_old_sentences[index] = 0
         index += 1
-    avg += maxRate
-    maxRate = 0
+    avg += minRate
+    minRate = 0
     index = 0
 
 avg = avg / num_sentences
+
 
 print "levenshtein result is %f" % avg
 
